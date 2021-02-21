@@ -26,7 +26,7 @@ except urllib.error.HTTPError:
 
 #ASKING ESPS.......
 while True:
-    s_esp_addr = "https://chat-retriever.herokuapp.com/get/data/" + str(fss_esp_addr)#concat with id
+    s_esp_addr = "https://chat-retriever.herokuapp.com/get/data/" + str(sss_esp_addr)#concat with id
     f_esp_addr = "https://chat-retriever.herokuapp.com/get/data/" + str(fss_esp_addr)#concat with id
     f_esp_sens = "https://chat-retriever.herokuapp.com/get/metadata/" + str(fss_esp_addr)#for rewriting in cycle
     s_esp_sens = "https://chat-retriever.herokuapp.com/get/metadata/" + str(sss_esp_addr)#same
