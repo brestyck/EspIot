@@ -32,10 +32,10 @@ while True:
     s_esp_sens = "https://chat-retriever.herokuapp.com/get/metadata/" + str(sss_esp_addr)#same
     try:
         f_esp_dt = urllib.request.urlopen(f_esp_addr).read().decode("utf-8")#fetching data
-        f_esp_sens = urllib.request.urlopen(s_esp_addr).read().decode("utf-8")#fetching sens
+        f_esp_sens = urllib.request.urlopen(f_esp_sens).read().decode("utf-8")#fetching sens
     except:f_esp_dt="unaval";f_esp_sens="unaval"
     try:
-        s_esp_dt = urllib.request.urlopen(f_esp_sens).read().decode("utf-8")#fetching data
+        s_esp_dt = urllib.request.urlopen(s_esp_addr).read().decode("utf-8")#fetching data
         s_esp_sens = urllib.request.urlopen(s_esp_sens).read().decode("utf-8")#fetching sens
     except:s_esp_dt="unaval";s_esp_sens="unaval"
     print("\n")
@@ -44,4 +44,3 @@ while True:
     print("\u001b[39mESP\u001b[32m"+sss_esp_addr+"\n\u001b[39msens:\u001b[35m"+s_esp_sens+"\n\u001b[39mdata: \u001b[31m"+s_esp_dt)
     time.sleep(20)
     os.system("clear")
-    os.system("cowsay -f eyes Watch your data, bro... | lolcat")
