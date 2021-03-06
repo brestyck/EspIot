@@ -1,10 +1,10 @@
 // GET запрос к http://api.openweathermap.org
-
+const String esp_id = "Boris012";
 
 #include <ESP8266WiFi.h>
-
-const char* ssid     = "Redm2i";         // тут SSID и пароль к WIFI
-const char* password = "Geondzhian";
+const String sensor_type = "RH_SENSOR"; // Какой датчик подключаем
+const char* ssid     = "MGTS_GPON_6194";         // тут SSID и пароль к WIFI
+const char* password = "SA8Z4DGN";
 
 const char* host = "chat-retriever.herokuapp.com";     // тут адрес сервера
 
@@ -33,16 +33,20 @@ void setup() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 
-
-  Get();        // при  включении выполняем функцию
+  Get("GET /delete/esp HTTP/1.1");
+  delay(1000);
+  Get("GET /deploy/esp/"+esp_id+"/VIRTUALHOST HTTP/1.1");        // при  включении выполняем функцию
 }
-
+int data = 0;
 void loop() {
-
+  delay(30000);
+  Get("GET /delete/"+esp_id+" HTTP/1.1");
+  delay(1000);
+  Get("GET /deploy/"+esp_id+"/"+(String)data+"/"+sensor_type+" HTTP/1.1");
 }
 
 
-void Get() {
+void Get(String depl_url) {
   // Use WiFiClient class to create TCP connections
   WiFiClient client;
   const int httpPort = 80;
@@ -53,9 +57,7 @@ void Get() {
   /// если подключились, отправляем чего от сервера хотим
   // сам GET запрос с ID и ключем
   Serial.println("GET processing...");
-  client.println("GET /delete/esp HTTP/1.1");
-  delay(100);
-  client.println("GET /deploy/esp/test_esp_code/metadata HTTP/1.1");
+  client.println(depl_url); // FORMAT!!! GET /link/ HTTP/1.1
   // говорим к какому хосту обращаемся (на сервере может быть несколько сайтов)
   Serial.println("Transmitting deploy query to the host");
   client.println("Host: chat-retriever.herokuapp.com");
