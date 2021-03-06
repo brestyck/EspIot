@@ -3,8 +3,8 @@ const String esp_id = "Boris012";
 
 #include <ESP8266WiFi.h>
 const String sensor_type = "RH_SENSOR"; // Какой датчик подключаем
-const char* ssid     = "MGTS_GPON_6194";         // тут SSID и пароль к WIFI
-const char* password = "SA8Z4DGN";
+const char* ssid     = "ssid";         // тут SSID и пароль к WIFI
+const char* password = "pass";
 
 const char* host = "chat-retriever.herokuapp.com";     // тут адрес сервера
 
