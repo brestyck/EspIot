@@ -1,8 +1,8 @@
 // GET запрос к http://api.openweathermap.org
-const String esp_id = "Boris012";
+const String esp_id = "ofBoris";
 
 #include <ESP8266WiFi.h>
-const String sensor_type = "RH_SENSOR"; // Какой датчик подключаем
+const String sensor_type = "Photoresistor"; // Какой датчик подключаем
 const char* ssid     = "ssid";         // тут SSID и пароль к WIFI
 const char* password = "pass";
 
@@ -13,6 +13,7 @@ void setup() {
   Serial.begin(115200);
   delay(10);
   pinMode(0, INPUT);
+  pinMode(16, OUTPUT);
 
   // в сетапе как обычно подключаемся к сети
 
@@ -20,14 +21,14 @@ void setup() {
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
-
+  digitalWrite(16, 0);
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-
+  digitalWrite(16, 1);
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
