@@ -12,7 +12,7 @@ const char* host = "chat-retriever.herokuapp.com";     // тут адрес се
 void setup() {
   Serial.begin(115200);
   delay(10);
-
+  pinMode(0, INPUT);
 
   // в сетапе как обычно подключаемся к сети
 
@@ -40,6 +40,8 @@ void setup() {
 int data = 0;
 void loop() {
   delay(30000);
+  data = analogRead(0);
+  delay(1000);
   Get("GET /delete/"+esp_id+" HTTP/1.1");
   delay(1000);
   Get("GET /deploy/"+esp_id+"/"+(String)data+"/"+sensor_type+" HTTP/1.1");
