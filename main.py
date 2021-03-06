@@ -31,7 +31,11 @@ while True:
         f_esp_addr = "https://chat-retriever.herokuapp.com/get/data/" + str(fss_esp_addr)#concat with id
         f_esp_sens = "https://chat-retriever.herokuapp.com/get/metadata/" + str(fss_esp_addr)#for rewriting in cycle
         s_esp_sens = "https://chat-retriever.herokuapp.com/get/metadata/" + str(sss_esp_addr)#same
-    except:print("\u001b[41mALL ESP'S ARE OFFLINE!\u001b[49m");os.system("figlet -f small OFFLINE | lolcat")
+    except:
+        os.system("clear")
+        print("\u001b[41mALL ESP'S ARE OFFLINE!\u001b[49m")
+        os.system("figlet -f small OFFLINE | lolcat")
+        exit()
     try:
         f_esp_dt = urllib.request.urlopen(f_esp_addr).read().decode("utf-8")#fetching data
         f_esp_sens = urllib.request.urlopen(f_esp_sens).read().decode("utf-8")#fetching sens
